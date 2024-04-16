@@ -33,7 +33,7 @@ function App() {
     <div className="App">
       <form onSubmit={handleSubmit}>
         <label>
-          milliseconds:
+          how many milliseconds?
           <br></br>
           <input type="number" value={milliseconds} onChange={handleInputChange} />
         </label>
