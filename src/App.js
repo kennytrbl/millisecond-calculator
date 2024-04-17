@@ -2,14 +2,18 @@ import React, { useState } from "react";
 import "./App.css";
 
 function App() {
-  const [milliseconds, setMilliseconds] = useState(0);
+  const [milliseconds, setMilliseconds] = useState("");
   const [result, setResult] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
 
-  function millisecondConverter(m) {
-    const days = Math.floor(m / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((m % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((m % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((m % (1000 * 60)) / 1000);
+  function millisecondConverter(ms) {
+    if (!ms || isNaN(ms)) {
+      return { days: 0, hours: 0, minutes: 0, seconds: 0 };
+    }
+
+    const days = Math.floor(ms / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((ms % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((ms % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((ms % (1000 * 60)) / 1000);
 
     return {
       days,
@@ -19,30 +23,21 @@ function App() {
     };
   }
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const convertedResult = millisecondConverter(milliseconds);
-    setResult(convertedResult);
-  };
-
   const handleInputChange = (event) => {
-    setMilliseconds(event.target.value);
+    const inputValue = parseInt(event.target.value);
+    setMilliseconds(inputValue);
+    setResult(millisecondConverter(inputValue));
   };
 
   return (
     <div className="App">
-      <form onSubmit={handleSubmit}>
+      <form>
+        time in milliseconds
         <label>
-          how many milliseconds?
-          <br></br>
-          <input type="number" value={milliseconds} onChange={handleInputChange} />
+          <input type="number" value={milliseconds} onChange={handleInputChange} placeholder="ms" />
         </label>
-        <button className="submitButton" type="submit">
-          submit
-        </button>
       </form>
       <p className="output">
-        {" "}
         {result.days} days, {result.hours} hours, {result.minutes} minutes, and {result.seconds} seconds
       </p>
     </div>
