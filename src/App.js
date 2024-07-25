@@ -3,7 +3,12 @@ import "./App.css";
 
 function App() {
   const [milliseconds, setMilliseconds] = useState("");
-  const [result, setResult] = useState({ days: "", hours: "", minutes: "", seconds: "" });
+  const [result, setResult] = useState({
+    days: "",
+    hours: "",
+    minutes: "",
+    seconds: "",
+  });
 
   function millisecondConverter(ms) {
     if (!ms || isNaN(ms)) {
@@ -75,36 +80,63 @@ function App() {
 
   return (
     <div className="App">
-      <form>
-        <label>
-          time in milliseconds
-          <input type="number" value={milliseconds} onChange={handleInputChange} placeholder="ms" />
-        </label>
-      </form>
-      <form>
-        <label>
-          days
-          <input type="number" value={result.days} onChange={handleInputChange2} placeholder="days" />
-        </label>
-      </form>
-      <form>
-        <label>
-          hours
-          <input type="number" value={result.hours} onChange={handleInputChange3} placeholder="hrs" />
-        </label>
-      </form>
-      <form>
-        <label>
-          minutes
-          <input type="number" value={result.minutes} onChange={handleInputChange4} placeholder="min" />
-        </label>
-      </form>
-      <form>
-        <label>
-          seconds
-          <input type="number" value={result.seconds} onChange={handleInputChange5} placeholder="sec" />
-        </label>
-      </form>
+      <div className="form-container">
+        <form>
+          <label>
+            milliseconds
+            <input
+              type="number"
+              value={milliseconds}
+              onChange={handleInputChange}
+              placeholder="ms"
+            />
+          </label>
+        </form>
+        <form>
+          <label>
+            days
+            <input
+              type="number"
+              value={result.days}
+              onChange={handleInputChange2}
+              placeholder="days"
+            />
+          </label>
+        </form>
+        <form>
+          <label>
+            hours
+            <input
+              type="number"
+              value={result.hours}
+              onChange={handleInputChange3}
+              placeholder="hrs"
+            />
+          </label>
+        </form>
+        <form>
+          <label>
+            minutes
+            <input
+              type="number"
+              value={result.minutes}
+              onChange={handleInputChange4}
+              placeholder="min"
+            />
+          </label>
+        </form>
+        <form>
+          <label>
+            seconds
+            <input
+              type="number"
+              value={result.seconds}
+              onChange={handleInputChange5}
+              placeholder="sec"
+            />
+          </label>
+        </form>
+      </div>
     </div>
   );
 }
