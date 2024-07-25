@@ -2,4 +2,4 @@
 
 A simple millisecond converter.
 
-millisecond-calculator.vercel.app
+https://millisecond-calculator.vercel.app/
